@@ -1,43 +1,33 @@
-# CLAUDE.md — AI Skills Repository Rules
+# Zen skills repository rules
 
-## RULE: Read Before You Edit
+Skills fail silently: no test catches a skill that became vague or self-contradictory. Read the whole `SKILL.md` and its references before editing it.
 
-Before editing any skill's `SKILL.md` or `README.md`, you **MUST** first read that skill's `README.md` completely.
+## Format
 
-This is not optional. Do not skip it.
-
-## Why This Matters
-
-Skills are precision behavioral tools. They encode specific patterns, vocabulary lists, and checklists that must work together coherently. An edit made without reading the full README risks:
-
-- Removing items that are referenced elsewhere in the skill
-- Contradicting the skill's underlying logic
-- Introducing the very patterns the skill is designed to eliminate
-- Breaking compatibility with the Claude Code skills format
-
-Skills fail silently. There is no test suite that catches a skill that's become vague or self-contradictory. The README is your specification — read it.
-
-## Skills Format Requirements
-
-Every `SKILL.md` must have YAML frontmatter with exactly two fields:
+Every `skills/<name>/SKILL.md` starts with YAML frontmatter containing exactly two fields:
 
 ```yaml
 ---
-name: skill-name
-description: Use when [specific triggering condition] to [what it does].
+name: zen-skill-name
+description: Use when [specific triggering condition]. [What it does.]
 ---
 ```
 
-**Rules:**
-- `name`: kebab-case, matches the directory name
-- `description`: must start with `"Use when..."` — this is how Claude Code and other Agent Skills-compatible tools decide when to invoke the skill
-- `description` must be ≤ 1024 characters total
-- Do **not** summarise the workflow in the description — that belongs in the skill body
-- No other frontmatter fields are allowed
+- `name`: `zen-` plus a short phrase saying what the skill does (`zen-keep-it-simple`), matching the folder.
+- `description`: starts with "Use when" (or "Use at" for always-on skills), at most 1024 characters, states when to load the skill rather than summarizing its workflow.
+- Move long material to `references/` inside the skill folder.
 
-## Adding a New Skill
+## Content
 
-1. Create a new directory under `skills/` named after the skill (kebab-case)
-2. Create both `SKILL.md` and `README.md` in that directory
-3. Read the existing skills' READMEs for style reference before writing
-4. Ensure the `SKILL.md` frontmatter is valid before committing
+- Keep a rule only if it changes agent behavior away from its default and traces to a user preference, correction, or observed problem. Delete rules the harness already follows and rules another skill already states.
+- Skills are flat peers with no hub. Only the always-on skills are named in the bootloader in `README.md`; changing that set means editing every global file that holds it.
+- Third-party skills worth using are vendored here and adapted, never installed as a dependency.
+- Machine-, account-, or project-specific facts belong in `~/.agent-knowledge/` or the project, not in this public repository.
+
+## Check
+
+```bash
+npx skills add . -l
+```
+
+Lists every skill the installer can parse.
