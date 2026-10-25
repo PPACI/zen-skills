@@ -19,10 +19,12 @@ description: Use when [specific triggering condition]. [What it does.]
 
 ## Content
 
+- Write skills and references in English, whatever language the conversation uses. Quote a site's interface text verbatim in its own language so it matches the page.
 - Keep a rule only if it changes agent behavior away from its default and traces to a user preference, correction, or observed problem. Delete rules the harness already follows and rules another skill already states.
 - Skills are flat peers with no hub. Only the always-on skills are named in the bootloader in `README.md`; changing that set means editing every global file that holds it.
 - Third-party skills worth using are vendored here and adapted, never installed as a dependency.
 - Machine-, account-, or project-specific facts belong in `~/.agent-knowledge/` or the project, not in this public repository.
+- Skills grow from the user's real tasks, but never mention the user's items, accounts, numbers, or dates. State each lesson generically: "one live description named the wrong volume", not which book.
 
 ## Packaging
 
