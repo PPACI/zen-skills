@@ -23,4 +23,4 @@ Say which option you picked and why in one line.
 - A browser window you drive stays visible to the user; never switch to a headless or hidden browser on their account.
 - Prefer the site's own JSON API through `fetch` in the page (it carries the session cookies) over scraping the DOM. Use `GET` only unless the user approved the change.
 - Opening an unread conversation marks it read for the user. List conversations; open only the ones already read or the ones the user asked about.
-- Leaving a half-filled listing form raises a "Leave site?" dialog that blocks browser automation. Close or reload the form only after telling the user, or ask them to dismiss the dialog.
+- Leaving a half-filled listing form raises a "Leave site?" dialog that blocks browser automation, and closing the tab can hang on it. Open a new tab rather than navigating away from a form. To release a stuck form tab once the user agrees to discard it, run in the page `Object.defineProperty(BeforeUnloadEvent.prototype, 'returnValue', {configurable: true, set() {}, get() { return '' }}); BeforeUnloadEvent.prototype.preventDefault = function () {}`, then navigate away and close the tab.
