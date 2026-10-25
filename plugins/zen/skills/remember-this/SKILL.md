@@ -9,9 +9,8 @@ description: Use at the start of every task and whenever durable learning occurs
 
 ## Storage
 
-- On first use, create the folder, run `git init` in it, and create `INDEX.md` and `GLOSSARY.md`. Check the repository root is `~/.agent-knowledge/`, not a parent repository.
+- On first use, create the folder with `INDEX.md` and `GLOSSARY.md`.
 - Plain Markdown with relative links only. `INDEX.md` is the entry point; every note is reachable from it. Link related notes.
-- Local only: never add a remote or push.
 
 ## Read and record
 
@@ -31,7 +30,6 @@ description: Use at the start of every task and whenever durable learning occurs
 
 ## Maintenance
 
-- Standing authorization: create, edit, reorganize, prune, delete notes, and commit locally without asking.
+- Standing authorization: create, edit, reorganize, prune, and delete notes without asking.
 - Consolidate duplicates, fix stale claims, repair links and the index in the same change.
-- Commit with short messages, staging only your own changes. If Git needs an identity, set it repository-locally; never change global Git settings.
-- Other agents may share the repository: re-read before editing, never discard their work or rewrite history.
+- Other agents may share the folder: re-read before editing, never discard their work.

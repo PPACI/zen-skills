@@ -59,7 +59,7 @@ zen-skills marketplace
 | Plugin | Skill | Loads when | What changes |
 | --- | --- | --- | --- |
 | zen | [answer-first](plugins/zen/skills/answer-first/SKILL.md) | Every session | Answer or command first, tables and bullets over paragraphs, visible progress, one next step you can do in two minutes. Built for readers with ADHD; nice for everyone else. |
-| zen | [remember-this](plugins/zen/skills/remember-this/SKILL.md) | Every session | The agent reads and maintains `~/.agent-knowledge/`, a local Git repo of linked Markdown notes shared by every harness. It never leaves your machine. |
+| zen | [remember-this](plugins/zen/skills/remember-this/SKILL.md) | Every session | The agent reads and maintains `~/.agent-knowledge/`, a local folder of linked Markdown notes shared by every harness. It never leaves your machine. |
 | zen | [keep-it-simple](plugins/zen/skills/keep-it-simple/SKILL.md) | Code, config, infra, tests | Smallest change that works, standard library first, direct edits over wrapper scripts, tests in proportion to risk, test-first when the project asks, no commit you didn't request. |
 | zen | [cut-the-fluff](plugins/zen/skills/cut-the-fluff/SKILL.md) | Docs, comments, prose, agent files | READMEs that only say what you need now, comments that explain hazards, prose checked against a catalogue of AI writing patterns, one `AGENTS.md` per repo. |
 | zen-ui | [calm-ui](plugins/zen-ui/skills/calm-ui/SKILL.md) | Interfaces and product copy | No hero-and-card-grid defaults, no "AI connected" badges, vendor-neutral labels, several concepts before one polished one, then checks at five widths. |
