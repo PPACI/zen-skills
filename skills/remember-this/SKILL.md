@@ -1,5 +1,5 @@
 ---
-name: zen-remember-this
+name: remember-this
 description: Use at the start of every task and whenever durable learning occurs. Reads and maintains the local agent knowledge base at ~/.agent-knowledge/ - relevant notes before working, breakthroughs, failures, decisions, and preferences after.
 ---
 

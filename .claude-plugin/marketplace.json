@@ -1,0 +1,12 @@
+{
+  "name": "zen-skills",
+  "description": "Personal agent skills by Pierre Paci.",
+  "owner": { "name": "Pierre Paci" },
+  "plugins": [
+    {
+      "name": "zen",
+      "source": "./",
+      "description": "Calm, opinionated agent skills: answer first, build less, write without fluff."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 ---
-name: zen-answer-first
+name: answer-first
 description: Use when writing any response, plan, report, or question for this user. Shapes output so a reader with ADHD can act on it - answer first, scannable structure, visible progress, one bounded next action.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: zen-sell-it
+name: sell-it
 description: Use when preparing, pricing, publishing, or tracking items for sale on a second-hand marketplace such as Vinted or Leboncoin, including inventories of books or other objects from photos.
 ---
 

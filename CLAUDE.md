@@ -8,12 +8,12 @@ Every `skills/<name>/SKILL.md` starts with YAML frontmatter containing exactly t
 
 ```yaml
 ---
-name: zen-skill-name
+name: skill-name
 description: Use when [specific triggering condition]. [What it does.]
 ---
 ```
 
-- `name`: `zen-` plus a short phrase saying what the skill does (`zen-keep-it-simple`), matching the folder.
+- `name`: a short phrase saying what the skill does (`keep-it-simple`), matching the folder. No `zen-` prefix: the `zen` plugin namespaces it (`zen:keep-it-simple` in Claude Code).
 - `description`: starts with "Use when" (or "Use at" for always-on skills), at most 1024 characters, states when to load the skill rather than summarizing its workflow.
 - Move long material to `references/` inside the skill folder.
 
@@ -24,10 +24,14 @@ description: Use when [specific triggering condition]. [What it does.]
 - Third-party skills worth using are vendored here and adapted, never installed as a dependency.
 - Machine-, account-, or project-specific facts belong in `~/.agent-knowledge/` or the project, not in this public repository.
 
+## Packaging
+
+- The repository root is both the plugin and its marketplace: root `plugin.json` (Agent Plugins 1.0, Codex), `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` (Claude Code), `.agents/plugins/marketplace.json` (Codex). Keep `name` and `description` identical across them.
+- Do not add a `version`: without one, installs follow the latest commit.
+
 ## Check
 
 ```bash
+claude plugin validate .
 npx skills add . -l
 ```
-
-Lists every skill the installer can parse.

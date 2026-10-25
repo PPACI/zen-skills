@@ -1,0 +1,7 @@
+{
+  "name": "zen",
+  "description": "Calm, opinionated agent skills: answer first, build less, write without fluff.",
+  "author": { "name": "Pierre Paci", "url": "https://github.com/PPACI" },
+  "homepage": "https://github.com/PPACI/zen-skills",
+  "repository": "https://github.com/PPACI/zen-skills"
+}

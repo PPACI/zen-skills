@@ -1,5 +1,5 @@
 ---
-name: zen-keep-it-simple
+name: keep-it-simple
 description: Use when writing, changing, or reviewing code, configuration, infrastructure, scripts, tests, or dependencies, or before committing or deleting anything. Keeps changes small and low-maintenance and lets the user choose complexity tradeoffs.
 ---
 

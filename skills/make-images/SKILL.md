@@ -1,5 +1,5 @@
 ---
-name: zen-make-images
+name: make-images
 description: Use when generating or editing images through the OpenRouter API, choosing an image model, building multi-reference prompts, or producing a realistic portrait of a real person from photos.
 ---
 

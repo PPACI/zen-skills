@@ -1,5 +1,5 @@
 ---
-name: zen-calm-ui
+name: calm-ui
 description: Use when designing, building, reviewing, or checking a user interface, screen, page, or product copy. Removes decorative AI-style clutter, keeps what the user needs, and verifies the result across widths and states.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: zen-cut-the-fluff
+name: cut-the-fluff
 description: Use when writing or editing a README, documentation, code comment, docstring, article, post, email, AGENTS.md, CLAUDE.md, or SKILL.md. Keeps text compact, current, and free of AI writing patterns.
 ---
 
@@ -26,7 +26,7 @@ Before finalizing text that people will read, check it against [references/ai-wr
 
 - One source of truth in `AGENTS.md`; `CLAUDE.md` holds `@AGENTS.md` plus Claude-only notes.
 - Write enduring rules, not plans. Include the check command to run before concluding.
-- Do not repeat rules that personal `zen-*` skills already cover.
+- Do not repeat rules that the personal zen skills already cover.
 - When the user agrees a new rule, update the file in the same change; keep stated non-negotiables unless the user changes them.
 - Skills: `name` matches the folder; `description` states when to load it. Move long material to `references/`.
 - Where each agent looks for these files: [references/agent-config.md](references/agent-config.md).
