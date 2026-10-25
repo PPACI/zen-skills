@@ -15,7 +15,7 @@ Verified 2026-10-24 against official docs; this changes often, so recheck before
 
 | | Claude Code | Codex |
 | --- | --- | --- |
-| Plugin manifest | `.claude-plugin/plugin.json` (optional; only `name` required) | Root `plugin.json` per Agent Plugins 1.0 (preferred); `.codex-plugin/plugin.json` as fallback |
+| Plugin manifest | `.claude-plugin/plugin.json` (optional: without it, name and description come from the marketplace entry) | Root `plugin.json` per Agent Plugins 1.0 (preferred); `.codex-plugin/plugin.json` as fallback |
 | Skills | `skills/<name>/SKILL.md` | Same |
 | Marketplace | `.claude-plugin/marketplace.json` | `.agents/plugins/marketplace.json`; also reads `.claude-plugin/marketplace.json` |
 | Skill name once installed | `<plugin>:<skill>` | Not documented |

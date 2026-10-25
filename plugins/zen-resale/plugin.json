@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zen-resale",
+  "description": "Second-hand listings on Vinted or Leboncoin, from photos to shipping.",
+  "author": {
+    "name": "Pierre Paci",
+    "url": "https://github.com/PPACI"
+  },
+  "homepage": "https://github.com/PPACI/zen-skills",
+  "repository": "https://github.com/PPACI/zen-skills",
+  "keywords": [
+    "vinted",
+    "leboncoin",
+    "resale"
+  ]
+}

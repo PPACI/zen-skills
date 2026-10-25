@@ -1,11 +1,55 @@
 {
   "name": "zen-skills",
-  "interface": { "displayName": "Zen skills" },
+  "interface": {
+    "displayName": "Zen skills"
+  },
   "plugins": [
     {
       "name": "zen",
-      "source": { "source": "local", "path": "./" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/zen"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "zen-ui",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zen-ui"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    },
+    {
+      "name": "zen-images",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zen-images"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "zen-resale",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zen-resale"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
       "category": "Productivity"
     }
   ]

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zen-ui",
+  "description": "Calm interfaces without AI decoration, verified across widths and states.",
+  "author": {
+    "name": "Pierre Paci",
+    "url": "https://github.com/PPACI"
+  },
+  "homepage": "https://github.com/PPACI/zen-skills",
+  "repository": "https://github.com/PPACI/zen-skills",
+  "keywords": [
+    "ui",
+    "design",
+    "accessibility"
+  ]
+}

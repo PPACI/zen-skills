@@ -4,7 +4,7 @@ Skills fail silently: no test catches a skill that became vague or self-contradi
 
 ## Format
 
-Every `skills/<name>/SKILL.md` starts with YAML frontmatter containing exactly two fields:
+Every `plugins/<plugin>/skills/<name>/SKILL.md` starts with YAML frontmatter containing exactly two fields:
 
 ```yaml
 ---
@@ -26,12 +26,16 @@ description: Use when [specific triggering condition]. [What it does.]
 
 ## Packaging
 
-- The repository root is both the plugin and its marketplace: root `plugin.json` (Agent Plugins 1.0, Codex), `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` (Claude Code), `.agents/plugins/marketplace.json` (Codex). Keep `name` and `description` identical across them.
+- The repository root is the marketplace: `.claude-plugin/marketplace.json` (Claude Code) and `.agents/plugins/marketplace.json` (Codex) list every plugin in `plugins/`.
+- Each plugin has one manifest, `plugins/<plugin>/plugin.json` (Agent Plugins 1.0). Claude Code takes the plugin name and description from its marketplace entry, so keep `name` and `description` identical in all three places.
+- `zen` is the core every machine installs: keep it to skills useful on any machine, including at work. Domain skills go in a `zen-<domain>` add-on.
+- Adding a plugin means a folder in `plugins/`, an entry in both marketplace files, and a row in the README.
 - Do not add a `version`: without one, installs follow the latest commit.
 
 ## Check
 
 ```bash
-claude plugin validate .
+claude plugin validate .claude-plugin/marketplace.json
+for p in plugins/*; do claude plugin validate "$p"; done
 npx skills add . -l
 ```

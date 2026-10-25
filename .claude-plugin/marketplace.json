@@ -1,12 +1,29 @@
 {
   "name": "zen-skills",
   "description": "Personal agent skills by Pierre Paci.",
-  "owner": { "name": "Pierre Paci" },
+  "owner": {
+    "name": "Pierre Paci"
+  },
   "plugins": [
     {
       "name": "zen",
-      "source": "./",
-      "description": "Calm, opinionated agent skills: answer first, build less, write without fluff."
+      "source": "./plugins/zen",
+      "description": "Core: answer first, remember what you learn, build less, write without fluff."
+    },
+    {
+      "name": "zen-ui",
+      "source": "./plugins/zen-ui",
+      "description": "Calm interfaces without AI decoration, verified across widths and states."
+    },
+    {
+      "name": "zen-images",
+      "source": "./plugins/zen-images",
+      "description": "Image generation and editing through OpenRouter, with model pitfalls and costs."
+    },
+    {
+      "name": "zen-resale",
+      "source": "./plugins/zen-resale",
+      "description": "Second-hand listings on Vinted or Leboncoin, from photos to shipping."
     }
   ]
 }

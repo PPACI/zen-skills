@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zen-images",
+  "description": "Image generation and editing through OpenRouter, with model pitfalls and costs.",
+  "author": {
+    "name": "Pierre Paci",
+    "url": "https://github.com/PPACI"
+  },
+  "homepage": "https://github.com/PPACI/zen-skills",
+  "repository": "https://github.com/PPACI/zen-skills",
+  "keywords": [
+    "images",
+    "openrouter"
+  ]
+}
