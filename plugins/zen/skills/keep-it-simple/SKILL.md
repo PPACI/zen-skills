@@ -1,6 +1,6 @@
 ---
 name: keep-it-simple
-description: Use when writing, changing, or reviewing code, configuration, infrastructure, scripts, tests, or dependencies, or before committing or deleting anything. Keeps changes small and low-maintenance and lets the user choose complexity tradeoffs.
+description: Use when writing, changing, or reviewing code, configuration, infrastructure, scripts, tests, or dependencies, when inspecting secrets, or before committing or deleting anything. Keeps changes small and low-maintenance and lets the user choose complexity tradeoffs.
 ---
 
 # Keep it simple
@@ -32,6 +32,14 @@ Every feature, dependency, abstraction, wrapper, and build script is an ongoing 
 3. Run the project's full check command before concluding.
 
 Prefer table-driven tests.
+
+## Secrets
+
+- Mask only literal values, never by length or shape. Keep references (`var.x`, `data.x.value`, `local.x`, `${...}`) visible; a length-based mask makes a reference look like a hardcoded secret.
+- Report a hardcoded credential only after confirming the masked expression is a literal; otherwise report it as unverified.
+- Use portable patterns: BSD `sed -E` and `grep -E` (macOS) lack `\s` and `\d`. Use POSIX classes such as `[[:space:]]`, or Python. A pattern that silently fails to match prints the secret instead of masking it.
+- Compare two secrets by short SHA-256 prefixes, not by their values.
+- Do not flag plaintext tokens in shell rc files, `~/.gitconfig`, or `.git/config` remote URLs; the user knows and policy may leave no alternative. Still never print, copy, or commit them.
 
 ## Commits and deletion
 
