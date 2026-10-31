@@ -16,6 +16,7 @@ zen-skills marketplace
 ├── zen-ui             add-on     calm-ui       no sparkles, no badges, checked at 320 px
 ├── zen-images         add-on     make-images   OpenRouter image generation that works
 └── zen-resale         add-on     sell-it       Vinted / Leboncoin listings from photos
+                                  print-labels  shipping labels on Avery L7169 sheets
 ```
 
 ## Quick start
@@ -65,6 +66,7 @@ zen-skills marketplace
 | zen-ui | [calm-ui](plugins/zen-ui/skills/calm-ui/SKILL.md) | Interfaces and product copy | No hero-and-card-grid defaults, no "AI connected" badges, vendor-neutral labels, several concepts before one polished one, then checks at five widths. |
 | zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Which endpoint each model family needs, parameters that return HTTP 400, observed costs, and a recipe for realistic portraits. |
 | zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, stable references, one tracker, nothing published without your approval. |
+| zen-resale | [print-labels](plugins/zen-resale/skills/print-labels/SKILL.md) | Shipping labels to print | Crops the carrier label out of the PDF or image and places it on a blank A4 landscape page at the chosen Avery L7169 position, barcodes kept vector. |
 
 ## How it fits with work instructions
 
