@@ -13,16 +13,32 @@ description: Use when preparing, pricing, publishing, or tracking items for sale
 - Path to the item's photo.
 - Write in the marketplace's language.
 
+## Marketplace
+
+- Vinted works only through parcel shipping. Bulky or heavy items (furniture, large appliances) go on Leboncoin with hand delivery ("Remise en main propre") instead.
+- Say which marketplace you picked and why in one line.
+
 ## Accuracy
 
 - Compare identifying details (title, brand, model, volume, size) against the photo before validating.
 - When something is unreadable, mark it uncertain or ask for another photo. Never invent condition, brand, size, edition, code, or content.
+
+## Photos
+
+- Rotate phone photos to upright pixels before cropping or sending them anywhere: many exports keep the rotation only in an EXIF orientation tag that tools and image APIs ignore.
+- Check every photo meant for publication for personal items in the frame: ID documents, letters, screens, addresses. One publishable photo showed a passport lying in a shelf.
+- AI-cleaned photos (clutter removed, plain background) are fine when the user wants them, but the item must stay faithful:
+  - Compare each generated image with the real photos: same proportions, count of parts, colour, finish. A first pass invented wear marks on a clean top, which the user caught.
+  - Before generating, ask for close-ups of the surfaces buyers will inspect (top, edges, corners) and pass them as extra references.
+  - Keep real defects. Show each one in its own AI-cleaned close-up that keeps the defect, and name it in the description.
+- Image generation itself: the `make-images` skill.
 
 ## Item types
 
 Rules that depend on the kind of item live in one page per type:
 
 - Books, comics, manga: [references/items/books.md](references/items/books.md).
+- Furniture: [references/items/furniture.md](references/items/furniture.md).
 
 For a type with no page yet (clothes, electronics, …), apply only the general rules, and create `references/items/<type>.md` during the first job with that type, recording what that job taught: fields, search terms, pricing signals.
 
@@ -35,7 +51,7 @@ For a type with no page yet (clothes, electronics, …), apply only the general 
 
 ## Browser
 
-Pick the browser and sign in following [references/browsers.md](references/browsers.md). Marketplace pages, API routes, and form fields: [references/vinted.md](references/vinted.md). Listings that do not sell: [references/repricing.md](references/repricing.md).
+Pick the browser and sign in following [references/browsers.md](references/browsers.md). Marketplace pages, API routes, and form fields: [references/vinted.md](references/vinted.md), [references/leboncoin.md](references/leboncoin.md). Listings that do not sell: [references/repricing.md](references/repricing.md).
 
 ## Publishing and replies
 

@@ -60,12 +60,12 @@ zen-skills marketplace
 | Plugin | Skill | Loads when | What changes |
 | --- | --- | --- | --- |
 | zen | [answer-first](plugins/zen/skills/answer-first/SKILL.md) | Every session | Answer or command first, tables and bullets over paragraphs, visible progress, one next step you can do in two minutes. Built for readers with ADHD; nice for everyone else. |
-| zen | [remember-this](plugins/zen/skills/remember-this/SKILL.md) | Every session | The agent reads and maintains `~/.agent-knowledge/`, a local folder of linked Markdown notes shared by every harness. It never leaves your machine. |
+| zen | [remember-this](plugins/zen/skills/remember-this/SKILL.md) | Every session | The agent reads and maintains `~/.agent-knowledge/`, a local folder of linked Markdown notes shared by every harness. It never leaves your machine. After a task that taught something, it proposes improvements to the skills it used. |
 | zen | [keep-it-simple](plugins/zen/skills/keep-it-simple/SKILL.md) | Code, config, infra, tests | Smallest change that works, standard library first, direct edits over wrapper scripts, tests in proportion to risk, test-first when the project asks, no commit you didn't request. |
 | zen | [cut-the-fluff](plugins/zen/skills/cut-the-fluff/SKILL.md) | Docs, comments, prose, agent files | READMEs that only say what you need now, comments that explain hazards, prose checked against a catalogue of AI writing patterns, one `AGENTS.md` per repo. |
 | zen-ui | [calm-ui](plugins/zen-ui/skills/calm-ui/SKILL.md) | Interfaces and product copy | No hero-and-card-grid defaults, no "AI connected" badges, vendor-neutral labels, several concepts before one polished one, then checks at five widths. |
-| zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Which endpoint each model family needs, parameters that return HTTP 400, observed costs, and a recipe for realistic portraits. |
-| zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, stable references, one tracker, nothing published without your approval. |
+| zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Which endpoint each model family needs, parameters that return HTTP 400, observed costs, a recipe for realistic portraits, and clutter-free product photos that keep real defects. |
+| zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, faithful AI-cleaned photos, Leboncoin pickup for bulky items, stable references, one tracker, nothing published without your approval. |
 | zen-resale | [print-labels](plugins/zen-resale/skills/print-labels/SKILL.md) | Shipping labels to print | Crops the carrier label out of the PDF or image and places it on a blank A4 landscape page at the chosen Avery L7169 position, barcodes kept vector. |
 
 ## How it fits with work instructions

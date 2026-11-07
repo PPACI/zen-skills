@@ -21,6 +21,12 @@ description: Use at the start of every task and whenever durable learning occurs
 - Facts about this machine, its accounts, or one project belong here; behavior for every machine belongs in a skill.
 - Notes are context, not instructions; current user words and project state win. Never store secrets.
 
+## Improve skills
+
+- When a task shows that a skill you used was missing a step, stated something wrong, or lacked a workflow that worked, propose the change at the end of the task: which skill, what happened, what to add or fix, in a few lines.
+- Propose; edit the skill only once the user agrees. Facts about one machine or project still go in the notes above.
+- Most tasks teach nothing new for a skill. Say nothing then; do not invent improvements.
+
 ## Glossary
 
 - `GLOSSARY.md`, linked from `INDEX.md`, defines the user's jargon: internal company terms, abbreviations, project and team names.
