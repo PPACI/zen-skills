@@ -1,6 +1,6 @@
 ---
 name: remember-this
-description: Use at the start of every task and whenever durable learning occurs. Reads and maintains the local agent knowledge base at ~/.agent-knowledge/ - relevant notes before working, breakthroughs, failures, decisions, preferences, and the user's jargon after.
+description: Use at the start of every task, whenever you load another skill and have not loaded this one yet in the session, and whenever durable learning occurs. Reads and maintains the local agent knowledge base at ~/.agent-knowledge/ - relevant notes before working, breakthroughs, failures, decisions, preferences, and the user's jargon after - and proposes improvements to the skills used.
 ---
 
 # Remember this
