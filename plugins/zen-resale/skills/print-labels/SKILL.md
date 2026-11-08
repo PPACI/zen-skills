@@ -15,7 +15,7 @@ Positions are as seen with the sheet in landscape, the same way up as the user's
 
 1. Copy each source file into a new, empty scratch folder.
 2. Inspect: `uv run <skill-dir>/scripts/labels.py inspect SOURCE --out SCRATCH`. It prints the page size, the non-white area and large rectangles (often the label frame), and writes a PNG with a millimetre grid. Read the PNG.
-3. Pick the crop in mm from the page's top-left corner. Keep only what goes on the parcel: addresses, barcodes, QR code, routing codes, carrier marks such as "DEPOT PRIO". Leave out instructions, proof of postage, "Collez ici le ruban adhésif", cut lines and ads. Add about 0.5 mm around the frame.
+3. Pick the crop in mm from the page's top-left corner. Keep only what goes on the parcel: addresses, barcodes, QR code, routing codes, carrier marks such as "DEPOT PRIO". Leave out instructions, proof of postage, "Collez ici le ruban adhésif", cut lines and ads. Crop about 0.5 mm inside the frame line so the frame does not print: a partial frame leaves grey edges on some sides only.
 4. Build:
    ```bash
    uv run <skill-dir>/scripts/labels.py build \
@@ -31,6 +31,7 @@ Write the PDF to the current working directory unless the user names another fol
 
 ## Carrier formats
 
-- **Colissimo from Vinted**: A4 landscape page, label in the left half. Inner frame about 100 × 120 mm at `20,32,120,152`, with "DEPOT PRIO" below it. Crop `19.5,31.5,120.5,175`, rotated 90°, prints at 93 %.
+- **Colissimo from Vinted**: A4 landscape page, label in the left half. Inner frame about 100 × 120 mm at `20,32,120,152`, with "DEPOT PRIO" below it. Crop `20.5,32.5,119.5,175`, rotated 90°, prints at about 94 %.
+- **InPost / Mondial Relais from Vinted**: A4 portrait page, label top left, frame 100 × 150 mm at `7,7,107,157`; the right half is the "Fiche destinataire" to put inside the parcel. Content ends at the empty "Référence Client" row near y 135. Crop `7.6,7.6,106.4,136`, rotated 90°, prints at 95 %.
 
 Add a line here for each new format met.
