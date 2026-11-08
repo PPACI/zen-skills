@@ -39,8 +39,9 @@ Rules that depend on the kind of item live in one page per type:
 
 - Books, comics, manga: [references/items/books.md](references/items/books.md).
 - Furniture: [references/items/furniture.md](references/items/furniture.md).
+- Electronics and small appliances: [references/items/electronics.md](references/items/electronics.md).
 
-For a type with no page yet (clothes, electronics, …), apply only the general rules, and create `references/items/<type>.md` during the first job with that type, recording what that job taught: fields, search terms, pricing signals.
+For a type with no page yet (clothes, toys, …), apply only the general rules, and create `references/items/<type>.md` during the first job with that type, recording what that job taught: fields, search terms, pricing signals.
 
 ## Tracking
 

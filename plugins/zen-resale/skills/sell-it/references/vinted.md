@@ -38,10 +38,11 @@ Fields appear as the category is chosen. The edit page has the same form.
 1. "Photos": `input[type=file][name=photos]` (`data-testid="add-photos-input"`), multiple, JPEG/PNG/GIF/WebP. Fill it with the browser's file-upload tool, never by clicking (that opens a native picker).
 2. "Title" ("Titre"), "Description".
 3. "Category" ("Catégorie"): a drill-down menu, e.g. "Books & Media" › "Books" › "Fiction", "Non-fiction", "Kids & young adults", "Comics, manga & graphic novels", "Textbooks & study materials", "Colouring, puzzle & activity books" ("Livres et médias" › "Livres" › "Fiction", "Non-fiction", "Enfants et jeunes adultes", "Bandes dessinées, mangas et romans graphiques", "Manuels scolaires et ressources pédagogiques").
-4. Category fields. Books: "ISBN", required to publish ("Please enter an ISBN to continue"); it fills "Author", "Book title", "Language". `GET /api/v2/item_upload/isbn_records?isbn=<isbn>` checks an ISBN and returns its record. Other categories were not checked.
+4. Category fields. Books: "ISBN", required to publish ("Please enter an ISBN to continue"); it fills "Author", "Book title", "Language". `GET /api/v2/item_upload/isbn_records?isbn=<isbn>` checks an ISBN and returns its record. Keyboards: "Keyboard layout" ("AZERTY", "QWERTY", "QWERTZ", "Other keyboard layout"). Electronics and appliances: "Colours" (up to 2), sometimes "Material". Other categories were not checked.
+   - Vinted auto-fills "Category" and "Brand" from the photo. The brand guess can be wrong (another brand's box in the frame was picked): check it and correct it.
 5. "Condition" ("État"): "New with tags", "New without tags", "Very good", "Good", "Satisfactory" ("Neuf avec étiquette", "Neuf sans étiquette", "Très bon état", "Bon état", "Satisfaisant").
 6. "Price" ("Prix") in euros. The buyer pays postage and a buyer-protection fee on top.
-7. "Shipping" ("Envoi"), parcel size: "Small" (large envelope), "Medium" (shoebox), "Large" (moving box) ("Petit", "Moyen", "Grand"). One is marked "Recommended" ("Recommandé").
+7. "Shipping" ("Envoi"), parcel size: "Small" (large envelope), "Medium" (shoebox), "Large" (moving box) ("Petit", "Moyen", "Grand"). One is marked "Recommended" ("Recommandé"). Some categories, such as fans, offer weight classes instead: "5 kg", "10 kg", "20 kg".
 8. Buttons: new listing "Save draft" / "Upload" ("Sauvegarder le brouillon" / "Ajouter"); edit page "Save". Each needs the user's approval.
 
 Leaving the form after touching any field raises a "Leave site?" dialog.
@@ -51,7 +52,7 @@ Leaving the form after touching any field raises a "Leave site?" dialog.
 Refs change on every page load: find each field again rather than reusing refs.
 
 1. Photos: the browser's file-upload tool on the photos input; several files in one call work. On the edit page, each photo has a "Remove selected photo" button; remove from the last photo backwards.
-2. "Title" and "Description": click, then type. To replace existing text, triple-click the title; click the description and select all (cmd+a) before typing.
+2. "Title" and "Description": click, then type. For brands Vinted watches for counterfeits, a "Proof of authenticity" dialog opens after the photo upload and swallows the text typed meanwhile: close it ("OK, close"), then retype and check both values. The brand field then warns that listings without proof may be hidden; suggest a photo of the serial-number label. To replace existing text, triple-click the title; click the description and select all (cmd+a) before typing.
 3. "Category": open the picker, click each group button ("Books & Media", "Books"), then the leaf radio ("Non-fiction").
 4. Books: type the ISBN, press Tab; author, book title, and language fill in. Check the language.
 5. "Condition": open the picker, click the radio.

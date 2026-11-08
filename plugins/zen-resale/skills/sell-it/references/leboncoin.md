@@ -19,11 +19,11 @@ Observed on leboncoin.fr through Claude in Chrome, account already signed in. In
 3. Category fields, prefilled from the title and photos: check each one. Furniture: "Type", "Produit", "Démontable" toggle, "Pièce", "Poids", "Marque", "Matière", "Couleur", "État" ("État neuf", "Très bon état", "Bon état", "État satisfaisant", "Pour pièces"). "Continuer".
 4. "Un dernier aperçu avant de publier votre annonce !": Leboncoin writes its own description ("Rédigé par IA"). Replace it with the approved text.
 5. "Prix de vente souhaité": shows "Prix recommandé entre X € et Y €" and a prefilled guess; set the approved price.
-6. "Remise du bien" > "À quelle adresse se trouve le bien ?": type only the town and pick it from the list ("<Ville> (<code postal>)"); the street is not needed. "En main propre" is "Par défaut"; "Livraison personnalisée" shows "Désactivé" unless turned on. "Continuer".
+6. "Remise du bien" > "À quelle adresse se trouve le bien ?": type only the town and pick it from the list ("<Ville> (<code postal>)"); the street is not needed. "En main propre" is "Par défaut"; "Livraison personnalisée" shows "Désactivé" unless turned on. Some categories (pet accessories) instead show "En livraison" with "Activer la livraison" checked by default: uncheck it for a pickup-only item. For a free item, pick "Je donne" instead of "Je vends" under "Prix". "Continuer".
 7. "Boostez votre annonce !": paid options, all unchecked. Never check one without being asked. "Déposer sans booster mon annonce" publishes.
 8. A satisfaction survey may pop up on the confirmation page; close it without answering.
 
-The listing appears under "Mes annonces" after about 30 seconds of moderation. The public page lists "Modes de remise"; check it shows only "Remise en main propre" when the item is pickup only. The price line also shows a higher amount with "Transaction sécurisée incluse": the buyer's optional online-payment fee, not the seller's price.
+The listing appears under "Mes annonces" after moderation, usually about 30 seconds but sometimes several minutes; recheck later before reporting a problem. The public page lists "Modes de remise"; check it shows only "Remise en main propre" when the item is pickup only. The price line also shows a higher amount with "Transaction sécurisée incluse": the buyer's optional online-payment fee, not the seller's price.
 
 ## Starting the next listing
 
