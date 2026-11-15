@@ -33,5 +33,6 @@ Write the PDF to the current working directory unless the user names another fol
 
 - **Colissimo from Vinted**: A4 landscape page, label in the left half. Inner frame about 100 × 120 mm at `20,32,120,152`, with "DEPOT PRIO" below it. Crop `20.5,32.5,119.5,175`, rotated 90°, prints at about 94 %.
 - **InPost / Mondial Relais from Vinted**: A4 portrait page, label top left, frame 100 × 150 mm at `7,7,107,157`; the right half is the "Fiche destinataire" to put inside the parcel. Content ends at the empty "Référence Client" row near y 135. Crop `7.6,7.6,106.4,136`, rotated 90°, prints at 95 %.
+- **Vinted Go from Vinted**: A4 portrait page, label top left, frame about 96 × 139 mm at `4.6,4.6,100.5,143.6`. Its top row is an ad ("Retrouvez les offres de nos partenaires") ending near y 30. Crop `5.1,30.8,100,143.1`, rotated 90°, prints at 99 %. Vinted's "Print shipping label" opens the PDF in a new tab on a signed URL; save it by fetching `location.href` in that tab and clicking a download link built from the blob.
 
 Add a line here for each new format met.
