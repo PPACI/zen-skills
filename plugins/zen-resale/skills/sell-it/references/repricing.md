@@ -26,6 +26,8 @@ Marketplace routes are in [vinted.md](vinted.md). Rules that depend on the kind 
 | Several favourites, no sale | Slightly high price, or buyers want one item of the lot | Small cut, or split |
 | One item alone sells for more than the whole lot | The lot hides its value | Sell that item alone |
 
+Cheap items (a few euros) sell poorly because postage costs the buyer as much as the item; a bundle discount encourages buying several. Before suggesting one, check whether it is already on: Vinted's edit page shows it under "Price" ("Bundle discounts of up to 20% are on."). One proposal suggested turning on a discount that was already active.
+
 ## 4. Propose
 
 Present one table for approval: listing, current price, views and favourites, market range, proposal (new price, split, or new title), and the reason. Say which market prices were not checked.
