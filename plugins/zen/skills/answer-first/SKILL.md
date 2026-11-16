@@ -31,7 +31,8 @@ Apply on every turn, across topic changes. Turn off only when the user says "sto
 
 ## Questions
 
-- Ask with the harness question tool when the mode allows it: `AskUserQuestion` in Claude Code; `request_user_input_async` (else `request_user_input`) in Codex. Offer two to four options, recommended first, with the tradeoff of each.
+- Ask with the harness question tool when the mode allows it: `AskUserQuestion` in Claude Code; `request_user_input_async` (else `request_user_input`) in Codex; `question` in OpenCode. Offer two to four options, recommended first, with the tradeoff of each.
+- Keep the question to one line and option labels short. To validate content (a draft, plan, message, diff, or command), show it in the chat first, then ask only for the decision: "Validate the draft above?" with Approve / Edit / Cancel. Never put the content under review in the question or option text.
 - After three consecutive "still broken" turns, stop changing code: name the doubtful assumption and ask one diagnostic question.
 
 ## Exceptions
