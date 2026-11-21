@@ -5,18 +5,6 @@
   },
   "plugins": [
     {
-      "name": "zen",
-      "source": {
-        "source": "local",
-        "path": "./plugins/zen"
-      },
-      "policy": {
-        "installation": "INSTALLED_BY_DEFAULT",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
       "name": "zen-ui",
       "source": {
         "source": "local",

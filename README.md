@@ -1,101 +1,106 @@
 # zen-skills
 
-**Calm, opinionated agent skills that make Claude Code and Codex answer first, build less, and write without fluff.**
+**Calm, opinionated `AGENTS.md` rules and domain [Agent Skills](https://agentskills.io) for Antigravity, Claude Code, and Codex.**
 
-A plugin marketplace with one core plugin and a few add-ons, all made of small [Agent Skills](https://agentskills.io). The core replaces a 15 KB global `CLAUDE.md` with a three-line bootloader. Each skill loads only when its task shows up, and your project or work instructions always win.
+Core behavior lives as a compact, modular `AGENTS.md` template (zero startup tool calls, ~560 tokens total) that you copy in full or section by section. Task-specific workflows live as optional add-on plugins that load only when needed.
 
 ```text
-zen-skills marketplace
+zen-skills
 │
-├── zen                core, install everywhere
-│   ├── zen:answer-first      always on   replies you can act on
-│   ├── zen:remember-this     always on   a memory agents keep for themselves
-│   ├── zen:keep-it-simple    code        YAGNI, small diffs, no surprise commits
-│   └── zen:cut-the-fluff     writing     docs and prose without AI tells
+├── templates/AGENTS.md     paste in full or pick the sections you want
+│   ├── Communication           answer first, scannable, ranked options, batched questions
+│   ├── Memory                  shared local agent memory (~/.agent-knowledge/)
+│   ├── Engineering & safety    proportional risk, YAGNI, one MR at a time, risk-based secrets
+│   └── Writing & docs          present-tense docs, useful comments, lean agent files
 │
-├── zen-ui             add-on     calm-ui       no sparkles, no badges, checked at 320 px
-├── zen-images         add-on     make-images   OpenRouter image generation that works
-└── zen-resale         add-on     sell-it       Vinted / Leboncoin listings from photos
-                                  print-labels  shipping labels on Avery L7169 sheets
+└── plugins/                optional domain add-ons
+    ├── zen-ui              calm-ui       no sparkles, no badges, checked at 320 px
+    ├── zen-images          make-images   OpenRouter image generation that works
+    └── zen-resale          sell-it       Vinted / Leboncoin listings from photos
+                            print-labels  shipping labels on Avery L7169 sheets
 ```
 
 ## Quick start
 
-1. Add the marketplace and install the core.
+### 1. Global rules (`AGENTS.md`)
 
-   Claude Code:
+Copy [templates/AGENTS.md](templates/AGENTS.md) (in full, or pick only the `##` sections you want) into your global agent instructions file:
 
-   ```bash
-   claude plugin marketplace add PPACI/zen-skills
-   claude plugin install zen@zen-skills
-   ```
+| Harness | Global file |
+| --- | --- |
+| Antigravity | `~/.gemini/config/AGENTS.md` |
+| Claude Code | `~/.claude/CLAUDE.md` |
+| Codex | `~/.codex/AGENTS.md` |
 
-   Codex: add the marketplace, then install **zen** from the plugin directory in the Codex app.
+| Section | What it changes |
+| --- | --- |
+| **Communication** | Answer or command first, tables and short grouped lists over paragraphs, ranked options with tradeoffs, brief progress with proof, batched questions. |
+| **Memory** | Agent reads and maintains `~/.agent-knowledge/`, a local folder of linked Markdown notes shared across harnesses. |
+| **Engineering & safety** | Risk-proportional checks and secret handling, smallest clear change, one MR/PR at a time, stdlib first, no unrequested commits. |
+| **Writing & docs** | Present-tense docs without change diaries, comments for invariants/hazards only, natural prose without AI clichés, single `AGENTS.md` source of truth. |
 
-   ```bash
-   codex plugin marketplace add PPACI/zen-skills
-   ```
+### 2. Optional domain plugins
 
-2. Paste the bootloader into `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, or your work `AGENTS.md`:
+Install only the add-ons you need:
 
-   ```markdown
-   # Zen skills
+- **Antigravity**: clone this repo and symlink plugins into `~/.gemini/config/plugins/`:
 
-   At the start of every session, load the `answer-first` and `remember-this` skills from the zen plugin (`zen:answer-first` and `zen:remember-this` in Claude Code). Load other zen skills when their description matches the task.
-   Project and work instructions override zen skills when they conflict.
-   ```
+  ```bash
+  git clone https://github.com/PPACI/zen-skills.git ~/Code/zen-skills
+  ln -sfn ~/Code/zen-skills/plugins/zen-ui ~/.gemini/config/plugins/zen-ui
+  ```
 
-3. Add the add-ons you need, for example:
+- **Claude Code**:
 
-   ```bash
-   claude plugin install zen-ui@zen-skills
-   ```
+  ```bash
+  claude plugin marketplace add PPACI/zen-skills
+  claude plugin install zen-ui@zen-skills
+  ```
 
-**Updates.** Plugins have no pinned version, so each update follows the latest commit. Claude Code: turn on auto-update for the marketplace in `/plugin`, or run `claude plugin marketplace update zen-skills`. Codex: `codex plugin marketplace upgrade zen-skills`.
+- **Codex**: add the marketplace, then install add-ons from the Codex app:
 
-**Other agents.** The skills also install without the plugin system, for any agent that reads Agent Skills: `npx skills add PPACI/zen-skills -g`.
+  ```bash
+  codex plugin marketplace add PPACI/zen-skills
+  ```
 
-## The skills
+- **Other agents**: install skills directly without the plugin system:
+
+  ```bash
+  npx skills add PPACI/zen-skills -g
+  ```
+
+**Updates.** Plugins have no pinned version, so updates follow the latest commit (`git pull` for symlinked Antigravity plugins, `claude plugin marketplace update zen-skills` or auto-update for Claude Code, `codex plugin marketplace upgrade zen-skills` for Codex).
+
+## Domain skills
 
 | Plugin | Skill | Loads when | What changes |
 | --- | --- | --- | --- |
-| zen | [answer-first](plugins/zen/skills/answer-first/SKILL.md) | Every session | Answer or command first, tables and bullets over paragraphs, visible progress, one next step you can do in two minutes. Built for readers with ADHD; nice for everyone else. |
-| zen | [remember-this](plugins/zen/skills/remember-this/SKILL.md) | Every session | The agent reads and maintains `~/.agent-knowledge/`, a local folder of linked Markdown notes shared by every harness. It never leaves your machine. After a task that taught something, it proposes improvements to the skills it used. |
-| zen | [keep-it-simple](plugins/zen/skills/keep-it-simple/SKILL.md) | Code, config, infra, tests | Smallest change that works, standard library first, direct edits over wrapper scripts, tests in proportion to risk, test-first when the project asks, no commit you didn't request. |
-| zen | [cut-the-fluff](plugins/zen/skills/cut-the-fluff/SKILL.md) | Docs, comments, prose, agent files | READMEs that only say what you need now, comments that explain hazards, prose checked against a catalogue of AI writing patterns, one `AGENTS.md` per repo. |
-| zen-ui | [calm-ui](plugins/zen-ui/skills/calm-ui/SKILL.md) | Interfaces and product copy | No hero-and-card-grid defaults, no "AI connected" badges, vendor-neutral labels, several concepts before one polished one, then checks at five widths. |
-| zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Which endpoint each model family needs, parameters that return HTTP 400, observed costs, a recipe for realistic portraits, clutter-free product photos that keep real defects, cartoons of real people, sticker packs, and SVG output. |
-| zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, faithful AI-cleaned photos, Leboncoin pickup for bulky items, stable references, one tracker, nothing published without your approval. |
+| zen-ui | [calm-ui](plugins/zen-ui/skills/calm-ui/SKILL.md) | Interfaces and product copy | No hero-and-card-grid defaults, no "AI connected" badges, vendor-neutral labels, several concepts before one polished one, checks at five widths. |
+| zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Endpoint per model family, HTTP 400 pitfalls, observed costs, recipes for realistic portraits, faithful product cleanup, cartoons, sticker packs, and SVG output. |
+| zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, faithful AI-cleaned photos, Leboncoin pickup for bulky items, stable references, one tracker, nothing published without approval. |
 | zen-resale | [print-labels](plugins/zen-resale/skills/print-labels/SKILL.md) | Shipping labels to print | Crops the carrier label out of the PDF or image and places it on a blank A4 landscape page at the chosen Avery L7169 position, barcodes kept vector. |
 
 ## How it fits with work instructions
 
-Global instruction files are hard to share between a personal setup and a company one: you end up merging two long files by hand. Here the personal part is three lines plus plugins:
-
 ```text
-chat  >  project / work AGENTS.md  >  zen skills
+chat  >  project / work AGENTS.md  >  zen rules
 ```
 
-Put the bootloader at the end of your work `AGENTS.md`, install only `zen`, and both sets of rules apply, with work rules winning on any conflict.
+Paste the sections you want at the end of your work `AGENTS.md` (with the precedence line at the top), and work rules win on any conflict.
 
-## How it's packaged
+## Packaging
 
 | File | Read by |
 | --- | --- |
+| `templates/AGENTS.md` | Copied or symlinked into global agent instructions |
 | `.claude-plugin/marketplace.json` | Claude Code |
 | `.agents/plugins/marketplace.json` | Codex |
-| `plugins/<name>/plugin.json` | Codex and other [Agent Plugins 1.0](https://agent-plugins.org) clients; Claude Code takes the name from the marketplace entry |
+| `plugins/<name>/plugin.json` | Antigravity, Codex, and [Agent Plugins 1.0](https://agent-plugins.org) clients |
 | `plugins/<name>/skills/` | Everyone |
 
-## Make it yours
+## Checks
 
-Fork the repo and edit the skills; they are plain Markdown. The repository rules in [CLAUDE.md](CLAUDE.md) keep them lean:
-
-- A rule stays only if it changes the agent's default behavior and traces back to a real preference or a real mistake.
-- Long reference material goes in a skill's `references/` folder, read only when needed.
-- Third-party skills worth having get vendored and adapted here, not installed as dependencies.
-
-Check the marketplace and each plugin still validate:
+Validate the marketplace and plugins after editing (see [CLAUDE.md](CLAUDE.md) for authoring rules):
 
 ```bash
 claude plugin validate .claude-plugin/marketplace.json

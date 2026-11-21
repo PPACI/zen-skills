@@ -6,11 +6,6 @@
   },
   "plugins": [
     {
-      "name": "zen",
-      "source": "./plugins/zen",
-      "description": "Core: answer first, remember what you learn, build less, write without fluff."
-    },
-    {
       "name": "zen-ui",
       "source": "./plugins/zen-ui",
       "description": "Calm interfaces without AI decoration, verified across widths and states."
