@@ -4,9 +4,9 @@
 
 Use the first option available in the session:
 
-1. **The user's own browser through an extension**, such as Claude in Chrome (`mcp__claude-in-chrome__*`). It reuses the user's sign-ins and password manager, and marketplaces treat it as a normal visitor. If the harness is Claude and the user has Chrome but no extension tools, recommend installing Claude in Chrome before falling back.
-2. **Another browser MCP already connected**, such as a Safari, Playwright, or built-in browser pane server. Check the session's tool list; do not install one.
-3. **The `agent-browser` CLI**, if `command -v agent-browser` finds it. Follow [agent-browser.md](agent-browser.md). Do not install it without asking.
+1. **An authenticated browser already wired into the harness** (built-in browser agent/pane or browser extension reusing the user's sign-ins). Marketplaces treat it as a normal visitor and keep existing logins.
+2. **Another browser MCP already connected** (Playwright, Safari, etc.). Check the session's tool list; do not install one.
+3. **The `agent-browser` CLI**, if `command -v agent-browser` finds it and the environment allows it. Follow [agent-browser.md](agent-browser.md). Do not install it without asking.
 4. **No browser**: produce listings as text for the user to paste.
 
 Say which option you picked and why in one line.

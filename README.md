@@ -14,7 +14,6 @@ zen-skills
 │   └── Writing & docs          present-tense docs, useful comments, lean agent files
 │
 └── plugins/                optional domain add-ons
-    ├── zen-ui              calm-ui       no sparkles, no badges, checked at 320 px
     ├── zen-images          make-images   OpenRouter image generation that works
     └── zen-resale          sell-it       Vinted / Leboncoin listings from photos
                             print-labels  shipping labels on Avery L7169 sheets
@@ -47,14 +46,14 @@ Install only the add-ons you need:
 
   ```bash
   git clone https://github.com/PPACI/zen-skills.git ~/Code/zen-skills
-  ln -sfn ~/Code/zen-skills/plugins/zen-ui ~/.gemini/config/plugins/zen-ui
+  ln -sfn ~/Code/zen-skills/plugins/zen-images ~/.gemini/config/plugins/zen-images
   ```
 
 - **Claude Code**:
 
   ```bash
   claude plugin marketplace add PPACI/zen-skills
-  claude plugin install zen-ui@zen-skills
+  claude plugin install zen-images@zen-skills
   ```
 
 - **Codex**: add the marketplace, then install add-ons from the Codex app:
@@ -75,7 +74,6 @@ Install only the add-ons you need:
 
 | Plugin | Skill | Loads when | What changes |
 | --- | --- | --- | --- |
-| zen-ui | [calm-ui](plugins/zen-ui/skills/calm-ui/SKILL.md) | Interfaces and product copy | No hero-and-card-grid defaults, no "AI connected" badges, vendor-neutral labels, several concepts before one polished one, checks at five widths. |
 | zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Endpoint per model family, HTTP 400 pitfalls, observed costs, recipes for realistic portraits, faithful product cleanup, cartoons, sticker packs, and SVG output. |
 | zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, faithful AI-cleaned photos, Leboncoin pickup for bulky items, stable references, one tracker, nothing published without approval. |
 | zen-resale | [print-labels](plugins/zen-resale/skills/print-labels/SKILL.md) | Shipping labels to print | Crops the carrier label out of the PDF or image and places it on a blank A4 landscape page at the chosen Avery L7169 position, barcodes kept vector. |
@@ -100,7 +98,7 @@ Paste the sections you want at the end of your work `AGENTS.md` (with the preced
 
 ## Checks
 
-Validate the marketplace and plugins after editing (see [CLAUDE.md](CLAUDE.md) for authoring rules):
+Validate the marketplace and plugins after editing (see [AGENTS.md](AGENTS.md) for authoring rules):
 
 ```bash
 claude plugin validate .claude-plugin/marketplace.json

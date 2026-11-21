@@ -6,11 +6,6 @@
   },
   "plugins": [
     {
-      "name": "zen-ui",
-      "source": "./plugins/zen-ui",
-      "description": "Calm interfaces without AI decoration, verified across widths and states."
-    },
-    {
       "name": "zen-images",
       "source": "./plugins/zen-images",
       "description": "Image generation and editing through OpenRouter, with model pitfalls and costs."
