@@ -29,6 +29,7 @@ LABELS_MM = {
 }
 ALIASES = {"hg": "tl", "hd": "tr", "bg": "bl", "bd": "br"}
 INSET_MM = 2.5  # keep content off the label edges and die cut
+VALID_ROTS = {"0", "90", "180", "270", "auto"}
 
 
 def mm_rect(x0, y0, x1, y1):
@@ -36,15 +37,29 @@ def mm_rect(x0, y0, x1, y1):
 
 
 def load_page(source, pno=0):
-    """Return a one-page PDF with rotation baked in, from a PDF or an image."""
+    """Return (one-page PDF with rotation baked in, is_pdf, raster_px_size or None)."""
     src = pymupdf.open(source)
-    if not src.is_pdf:
+    is_pdf = src.is_pdf
+    if not is_pdf:
         src = pymupdf.open("pdf", src.convert_to_pdf())
+    if pno < 0 or pno >= len(src):
+        sys.exit(f"{source}: page {pno} out of range (0..{len(src) - 1})")
     page = src[pno]
+    raster_px = None
+    if not is_pdf:
+        imgs = page.get_images(full=True)
+        if imgs:
+            iw, ih = imgs[0][2], imgs[0][3]
+            # Align raw pixel axes with the upright (EXIF-rotated) page orientation.
+            if (iw > ih) != (page.rect.width > page.rect.height):
+                iw, ih = ih, iw
+            raster_px = (iw, ih)
+        else:
+            raster_px = (page.rect.width, page.rect.height)
     out = pymupdf.open()
     new = out.new_page(width=page.rect.width, height=page.rect.height)
     new.show_pdf_page(new.rect, src, pno)
-    return out
+    return out, is_pdf, raster_px
 
 
 def content_bbox(page, dpi=50):
@@ -68,9 +83,11 @@ def inspect(args):
     print(f"{args.source}: {len(src)} page(s)")
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
+    if args.page is not None and (args.page < 0 or args.page >= len(src)):
+        sys.exit(f"{args.source}: page {args.page} out of range (0..{len(src) - 1})")
     pages = [args.page] if args.page is not None else range(len(src))
     for pno in pages:
-        doc = load_page(args.source, pno)
+        doc, _, _ = load_page(args.source, pno)
         page = doc[0]
         r = page.rect
         print(f"\npage {pno}: {r.width / MM:.1f} x {r.height / MM:.1f} mm")
@@ -78,7 +95,9 @@ def inspect(args):
         print(f"  content bbox (mm): {fmt(bbox) if bbox else 'empty'}")
         boxes = []
         for d in page.get_drawings():
-            dr = d["rect"]
+            dr = d.get("rect")
+            if dr is None:
+                continue
             if dr.width > 40 * MM and dr.height > 40 * MM and dr != r:
                 dash = " dashed" if d.get("dashes") not in (None, "[] 0") else ""
                 boxes.append(f"  rect{dash} (mm): {fmt(dr)}")
@@ -101,15 +120,64 @@ def inspect(args):
         print(f"  grid preview: {png}")
 
 
+def _is_page(tok):
+    return tok == "" or tok.isdigit()
+
+
+def _is_crop(tok):
+    if tok in ("", "full"):
+        return True
+    nums = tok.split(",")
+    if len(nums) != 4:
+        return False
+    try:
+        [float(n) for n in nums]
+        return True
+    except ValueError:
+        return False
+
+
+def _is_rot(tok):
+    return tok == "" or tok in VALID_ROTS
+
+
 def parse_place(spec):
-    parts = spec.split(":")
-    pos = ALIASES.get(parts[0].lower(), parts[0].lower())
+    if ":" not in spec:
+        sys.exit(f"invalid --place {spec!r}; expected POS:SOURCE[:PAGE[:CROP[:ROT]]]")
+    pos_raw, rest = spec.split(":", 1)
+    pos = ALIASES.get(pos_raw.lower(), pos_raw.lower())
     if pos not in LABELS_MM:
-        sys.exit(f"unknown position {parts[0]!r}; use tl, tr, bl, br")
-    source, rest = parts[1], parts[2:]
-    pno = int(rest[0]) if len(rest) > 0 and rest[0] else 0
-    crop = rest[1] if len(rest) > 1 and rest[1] else "full"
-    rot = rest[2] if len(rest) > 2 and rest[2] else "auto"
+        sys.exit(f"unknown position {pos_raw!r}; use tl, tr, bl, br")
+
+    # Peel optional :PAGE[:CROP[:ROT]] from the right so colons in SOURCE paths survive.
+    source, pno_s, crop_s, rot_s = rest, "", "", ""
+    if not Path(rest).exists():
+        p3 = rest.rsplit(":", 3)
+        p2 = rest.rsplit(":", 2)
+        p1 = rest.rsplit(":", 1)
+        if len(p3) == 4 and Path(p3[0]).exists():
+            source, pno_s, crop_s, rot_s = p3
+        elif len(p2) == 3 and Path(p2[0]).exists():
+            source, pno_s, crop_s = p2
+        elif len(p1) == 2 and Path(p1[0]).exists():
+            source, pno_s = p1
+        elif len(p3) == 4 and _is_page(p3[1]) and _is_crop(p3[2]) and _is_rot(p3[3]):
+            source, pno_s, crop_s, rot_s = p3
+        elif len(p2) == 3 and _is_page(p2[1]) and _is_crop(p2[2]):
+            source, pno_s, crop_s = p2
+        elif len(p1) == 2 and _is_page(p1[1]):
+            source, pno_s = p1
+
+    if not _is_page(pno_s):
+        sys.exit(f"invalid page {pno_s!r} in {spec!r}")
+    if not _is_crop(crop_s):
+        sys.exit(f"invalid crop {crop_s!r} in {spec!r}; use x0,y0,x1,y1 or 'full'")
+    if not _is_rot(rot_s):
+        sys.exit(f"invalid rotation {rot_s!r} in {spec!r}; use 0, 90, 180, 270, or auto")
+
+    pno = int(pno_s) if pno_s else 0
+    crop = crop_s or "full"
+    rot = rot_s or "auto"
     return pos, source, pno, crop, rot
 
 
@@ -122,10 +190,12 @@ def build(args):
         if pos in used:
             sys.exit(f"position {pos} used twice")
         used.add(pos)
-        doc = load_page(source, pno)
+        doc, is_pdf, raster_px = load_page(source, pno)
         page = doc[0]
         clip = page.rect if crop == "full" else mm_rect(*map(float, crop.split(",")))
         clip &= page.rect
+        if clip.is_empty or clip.width <= 0 or clip.height <= 0:
+            sys.exit(f"{source}: crop {crop!r} is empty or outside page ({page.rect.width / MM:.1f} x {page.rect.height / MM:.1f} mm)")
         target = mm_rect(*LABELS_MM[pos])
         target = target + (INSET_MM * MM, INSET_MM * MM, -INSET_MM * MM, -INSET_MM * MM)
         if rot == "auto":
@@ -135,18 +205,31 @@ def build(args):
         sheet.show_pdf_page(target, doc, 0, clip=clip, rotate=rot, keep_proportion=True)
         w, h = (clip.height, clip.width) if rot in (90, 270) else (clip.width, clip.height)
         scale = min(target.width / w, target.height / h)
-        print(f"{pos}: {source} p{pno} crop {fmt(clip)} mm, rot {rot}, scale {scale:.0%}")
+        if is_pdf:
+            print(f"{pos}: {source} p{pno} crop {fmt(clip)} mm, rot {rot}, scale {scale:.0%}")
+        else:
+            pw_mm, ph_mm = (w * scale) / MM, (h * scale) / MM
+            cpx_w = raster_px[0] * (clip.width / page.rect.width)
+            cpx_h = raster_px[1] * (clip.height / page.rect.height)
+            if rot in (90, 270):
+                cpx_w, cpx_h = cpx_h, cpx_w
+            eff_dpi = min(cpx_w / (pw_mm / 25.4), cpx_h / (ph_mm / 25.4))
+            warn = " [LOW DPI]" if eff_dpi < 150 else ""
+            print(f"{pos}: {source} p{pno} crop {fmt(clip)} mm, rot {rot}, print {pw_mm:.0f}x{ph_mm:.0f} mm ({eff_dpi:.0f} DPI){warn}")
     out_path = Path(args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out.save(out_path, garbage=3, deflate=True)
     print(f"saved {out_path}")
     if args.preview:
         # Preview only: label outlines drawn on a copy, never in the PDF to print.
+        preview_path = Path(args.preview)
+        preview_path.parent.mkdir(parents=True, exist_ok=True)
         prev = pymupdf.open(out_path)
         pg = prev[0]
         for box in LABELS_MM.values():
             pg.draw_rect(mm_rect(*box), color=(0.6, 0.6, 0.6), width=0.5)
-        pg.get_pixmap(dpi=80).save(args.preview)
-        print(f"preview {args.preview}")
+        pg.get_pixmap(dpi=80).save(preview_path)
+        print(f"preview {preview_path}")
 
 
 def main():

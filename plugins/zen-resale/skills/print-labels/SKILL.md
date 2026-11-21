@@ -9,11 +9,11 @@ description: Use when the user gives a shipping label (Colissimo, Mondial Relais
 
 ## Positions
 
-Positions are as seen with the sheet in landscape, the same way up as the user's reference template. Codes: `tl`, `tr`, `bl`, `br` (French `hg`, `hd`, `bg`, `bd` also work). Ask for the position when it is missing. Labels given together go on one sheet.
+Positions are as seen with the A4 sheet in landscape. Codes: `tl`, `tr`, `bl`, `br` (French `hg`, `hd`, `bg`, `bd` also work). Ask for the position when it is missing. Labels given together go on one sheet. Avery L7169 is 180°-symmetric; when reusing a partial sheet, feed it the same way up as the remaining labels.
 
 ## Steps
 
-1. Copy each source file into a new, empty scratch folder.
+1. Create a new, empty scratch folder for the grid PNG and preview (inspect `SOURCE` in place).
 2. Inspect: `uv run <skill-dir>/scripts/labels.py inspect SOURCE --out SCRATCH`. It prints the page size, the non-white area and large rectangles (often the label frame), and writes a PNG with a millimetre grid. Read the PNG.
 3. Pick the crop in mm from the page's top-left corner. Keep only what goes on the parcel: addresses, barcodes, QR code, routing codes, carrier marks such as "DEPOT PRIO". Leave out instructions, proof of postage, "Collez ici le ruban adhésif", cut lines and ads. Crop about 0.5 mm inside the frame line so the frame does not print: a partial frame leaves grey edges on some sides only.
 4. Build:
@@ -25,7 +25,7 @@ Positions are as seen with the sheet in landscape, the same way up as the user's
    ```
    `--place` is `POS:SOURCE[:PAGE[:CROP[:ROT]]]`, once per label. `ROT` defaults to `auto`: 90° when the crop is portrait.
 5. Read the preview (grey outlines are the labels and are not in the PDF): everything inside the right box, nothing cut off.
-6. If the printed scale is under 90 %, tighten the crop; shrunken barcodes may not scan. Say so if it cannot go higher.
+6. Check quality: for PDFs, tighten the crop if printed scale is under 90 % (shrunken barcodes may not scan); for raster images, check that effective print resolution is at least 150 DPI. Say so if it cannot go higher.
 
 Write the PDF to the current working directory unless the user names another folder. Remind the user to print at 100 % / actual size, not "fit to page".
 
@@ -33,6 +33,4 @@ Write the PDF to the current working directory unless the user names another fol
 
 - **Colissimo from Vinted**: A4 landscape page, label in the left half. Inner frame about 100 × 120 mm at `20,32,120,152`, with "DEPOT PRIO" below it. Crop `20.5,32.5,119.5,175`, rotated 90°, prints at about 94 %.
 - **InPost / Mondial Relais from Vinted**: A4 portrait page, label top left, frame 100 × 150 mm at `7,7,107,157`; the right half is the "Fiche destinataire" to put inside the parcel. Content ends at the empty "Référence Client" row near y 135. Crop `7.6,7.6,106.4,136`, rotated 90°, prints at 95 %.
-- **Vinted Go from Vinted**: A4 portrait page, label top left, frame about 96 × 139 mm at `4.6,4.6,100.5,143.6`. Its top row is an ad ("Retrouvez les offres de nos partenaires") ending near y 30. Crop `5.1,30.8,100,143.1`, rotated 90°, prints at 99 %. Vinted's "Print shipping label" opens the PDF in a new tab on a signed URL; save it by fetching `location.href` in that tab and clicking a download link built from the blob.
-
-Add a line here for each new format met.
+- **Vinted Go from Vinted**: A4 portrait page, label top left, frame about 96 × 139 mm at `4.6,4.6,100.5,143.6`. Its top row is an ad ("Retrouvez les offres de nos partenaires") ending near y 30. Crop `5.1,30.8,100,143.1`, rotated 90°, prints at 99 %. Vinted's "Print shipping label" opens the PDF in a new tab on a signed URL; download it directly with `curl -L` (or fetch `location.href` in the tab as fallback).

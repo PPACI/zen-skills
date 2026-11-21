@@ -46,6 +46,7 @@ Install only the add-ons you need:
 
   ```bash
   git clone https://github.com/PPACI/zen-skills.git ~/Code/zen-skills
+  mkdir -p ~/.gemini/config/plugins
   ln -sfn ~/Code/zen-skills/plugins/zen-images ~/.gemini/config/plugins/zen-images
   ```
 
@@ -56,10 +57,11 @@ Install only the add-ons you need:
   claude plugin install zen-images@zen-skills
   ```
 
-- **Codex**: add the marketplace, then install add-ons from the Codex app:
+- **Codex**:
 
   ```bash
   codex plugin marketplace add PPACI/zen-skills
+  codex plugin add zen-images@zen-skills
   ```
 
 - **Other agents**: install skills directly without the plugin system:
@@ -98,9 +100,4 @@ Paste the sections you want at the end of your work `AGENTS.md` (with the preced
 
 ## Checks
 
-Validate the marketplace and plugins after editing (see [AGENTS.md](AGENTS.md) for authoring rules):
-
-```bash
-claude plugin validate .claude-plugin/marketplace.json
-for p in plugins/*; do claude plugin validate "$p"; done
-```
+Authoring rules and validation commands live in [AGENTS.md](AGENTS.md).

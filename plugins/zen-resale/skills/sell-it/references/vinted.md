@@ -1,6 +1,6 @@
 # Vinted
 
-Observed on vinted.fr, signed in through Claude in Chrome. Recheck routes and fields if a call fails.
+Observed on vinted.fr (late 2026), signed in. Recheck routes and fields if a call fails.
 
 Labels are quoted as the page shows them: English first, French in parentheses. The interface language is set in the header language menu (`FR` / `EN`); text returned by the API, such as order statuses, follows it.
 
@@ -52,7 +52,7 @@ Leaving the form after touching any field raises a "Leave site?" dialog.
 Refs change on every page load: find each field again rather than reusing refs.
 
 1. Photos: the browser's file-upload tool on the photos input; several files in one call work. On the edit page, each photo has a "Remove selected photo" button; remove from the last photo backwards.
-2. "Title" and "Description": click, then type. For brands Vinted watches for counterfeits, a "Proof of authenticity" dialog opens after the photo upload and swallows the text typed meanwhile: close it ("OK, close"), then retype and check both values. The brand field then warns that listings without proof may be hidden; suggest a photo of the serial-number label. To replace existing text, triple-click the title; click the description and select all (cmd+a) before typing.
+2. "Title" and "Description": click, then type. For brands Vinted watches for counterfeits, a "Proof of authenticity" dialog opens after the photo upload and swallows the text typed meanwhile: close it ("OK, close"), then retype and check both values. The brand field then warns that listings without proof may be hidden; suggest a photo of the serial-number label. To replace existing text, triple-click the title; click the description and select all (Cmd/Ctrl+A) before typing.
 3. "Category": open the picker, click each group button ("Books & Media", "Books"), then the leaf radio ("Non-fiction").
 4. Books: type the ISBN, press Tab; author, book title, and language fill in. Check the language.
 5. "Condition": open the picker, click the radio.

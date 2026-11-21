@@ -5,7 +5,7 @@ description: Use when generating or editing images through the OpenRouter API, c
 
 # Make images
 
-Observed 2026-10-17, 2026-11-07 and 2026-11-13 through live API calls. Model names, parameters, and prices change; list models before relying on any of this.
+Observed Oct–Nov 2026 through live API calls. Model names, parameters, and prices change; list models before relying on any of this.
 
 ## Models
 
@@ -31,9 +31,9 @@ Any image or video output returns HTTP 402 "requires at least $1.00 in balance" 
 - Recraft accepts at most one `input_references` item.
 - Phone photos often store rotation only in the EXIF orientation tag; send pixels already upright, or the model may receive the image sideways.
 
-## Observed cost per image
+## Rough cost per image
 
-nano-banana-2.1 about $0.04; flux-3 2K about $0.10; gpt-image-2 high about $0.21; gpt-image-2.5 at 2304x3072 about $0.49; gpt-image-2.6 high at 1152x1536 about $0.06-0.09 (more with extra references), at 3072x2304 about $0.15; recraft-v4.1-vector about $0.08.
+Late-2026 ballpark: Gemini image ~$0.04, Recraft vector ~$0.08, FLUX ~$0.10, GPT Image ~$0.06–0.15 (higher with extra references or large pixel sizes). Read live `pricing` from `GET /api/v1/models?output_modalities=image` before quoting batch costs.
 
 ## Portrait of a real person
 

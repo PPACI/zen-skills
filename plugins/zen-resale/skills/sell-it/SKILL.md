@@ -26,12 +26,12 @@ description: Use when preparing, pricing, publishing, or tracking items for sale
 ## Photos
 
 - Rotate phone photos to upright pixels before cropping or sending them anywhere: many exports keep the rotation only in an EXIF orientation tag that tools and image APIs ignore.
-- Check every photo meant for publication for personal items in the frame: ID documents, letters, screens, addresses. One publishable photo showed a passport lying in a shelf.
+- Check every photo meant for publication for personal items in the frame: ID documents, letters, screens, addresses.
 - AI-cleaned photos (clutter removed, plain background) are fine when the user wants them, but the item must stay faithful:
-  - Compare each generated image with the real photos: same proportions, count of parts, colour, finish. A first pass invented wear marks on a clean top, which the user caught.
+  - Compare each generated image with the real photos: same proportions, count of parts, colour, finish.
   - Before generating, ask for close-ups of the surfaces buyers will inspect (top, edges, corners) and pass them as extra references.
   - Keep real defects. Show each one in its own AI-cleaned close-up that keeps the defect, and name it in the description.
-- Image generation itself: the `make-images` skill.
+- Image generation itself: use `make-images` if installed.
 
 ## Item types
 
@@ -41,13 +41,15 @@ Rules that depend on the kind of item live in one page per type:
 - Furniture: [references/items/furniture.md](references/items/furniture.md).
 - Electronics and small appliances: [references/items/electronics.md](references/items/electronics.md).
 
-For a type with no page yet (clothes, toys, …), apply only the general rules, and create `references/items/<type>.md` during the first job with that type, recording what that job taught: fields, search terms, pricing signals.
+For a type with no page yet (clothes, toys, …), apply the general rules.
 
 ## Tracking
 
+For multi-item local batches (skip when listing 1–3 items or checking live listings):
+
 - Give each item a stable reference number (`001`, `002`, …). Never renumber without being asked.
-- Keep one active tracker as the source of truth (an HTML page by default) with statuses such as For sale, Sold to ship, Shipped. Archived trackers stay read-only.
-- Use relative paths so the folder stays portable; check every local link and thumbnail resolves after changes.
+- Keep one tracker as the source of truth (Markdown or CSV by default; HTML only when visual thumbnails help) with statuses such as For sale, Sold to ship, Shipped.
+- Use relative paths so the folder stays portable; check local links resolve after changes.
 - Never modify or delete original photos.
 
 ## Browser

@@ -1,6 +1,6 @@
 # agent-browser fallback
 
-Condensed from the `agent-browser` 0.36 core skill (`agent-browser skills get core` prints the version-matched guide). Use only when no browser extension or MCP is available.
+Condensed from `agent-browser`'s core skill (`agent-browser skills get core` prints the version-matched guide). Use only when no built-in browser agent, browser extension, or browser MCP is available.
 
 ## Session
 
@@ -12,7 +12,7 @@ agent-browser --headed --profile ~/.agent-browser/profiles/sell-it open https://
 - Always pass `--headed`: the user watches the browser act on their account and signs in themselves in that window. Never run headless on the user's account.
 - Always set a named session: the default one is shared with other agents.
 - `--profile <dir>` keeps the sign-in across runs.
-- `--auto-connect` attaches to an already-running Chrome started with `--remote-debugging-port=9222`. That port exposes the whole browser to local processes; ask before using it.
+- `--auto-connect` attaches to an already-running Chrome started with `--remote-debugging-port=9222`. That port exposes the whole browser to local processes; ask before using it. Sandboxed agent shells often block Chrome's `DevToolsActivePort` (`Operation not permitted`) — use `--profile` instead.
 - Run `agent-browser close` when done.
 
 ## Core loop

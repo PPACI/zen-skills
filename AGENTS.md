@@ -34,14 +34,15 @@ description: Use when [specific triggering condition]. [What it does.]
 ## Packaging
 
 - The repository root is the marketplace: `.claude-plugin/marketplace.json` (Claude Code) and `.agents/plugins/marketplace.json` (Codex) list every plugin in `plugins/`.
-- Each plugin has one manifest, `plugins/<plugin>/plugin.json` (Agent Plugins 1.0). Keep `name` and `description` identical in all three places.
+- Each plugin has one manifest, `plugins/<plugin>/plugin.json` (Agent Plugins 1.0). Keep `name` identical in all three manifests, and `description` identical in `plugin.json` and `.claude-plugin/marketplace.json`.
 - Adding a plugin means a folder in `plugins/`, an entry in both marketplace files, and a row in the README.
 - Do not add a `version`: without one, installs follow the latest commit.
 
 ## Check
 
 ```bash
-claude plugin validate .claude-plugin/marketplace.json
-for p in plugins/*; do claude plugin validate "$p"; done
+claude plugin validate .claude-plugin/marketplace.json   # if Claude Code is installed
+for p in plugins/*; do agy plugin validate "$p"; done    # or: claude plugin validate "$p"
+jq -e '.plugins | map(.name)' .agents/plugins/marketplace.json >/dev/null
 npx skills add . -l
 ```

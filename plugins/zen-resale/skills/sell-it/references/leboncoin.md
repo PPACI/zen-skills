@@ -1,6 +1,6 @@
 # Leboncoin
 
-Observed on leboncoin.fr through Claude in Chrome, account already signed in. Interface text is quoted in French as the page shows it. Recheck if a step changes.
+Observed on leboncoin.fr (late 2026), account already signed in. Interface text is quoted in French as the page shows it. Recheck if a step changes.
 
 ## Pages
 
@@ -15,7 +15,7 @@ Observed on leboncoin.fr through Claude in Chrome, account already signed in. In
 ## Listing form
 
 1. "Quel est le titre de l'annonce ?": type the title. Suggested categories appear below it ("Maison & Jardin > Ameublement"); click one, or pick from "Ou choisissez une autre catégorie".
-2. Photos (up to 20): fill the hidden file input ("Upload files") with the browser's file-upload tool, several files in one call, in display order; the first becomes "Couverture". Claude in Chrome uploads only files inside folders the session may read: copy them into the working folder first if they live elsewhere.
+2. Photos (up to 20): fill the hidden file input ("Upload files") with the browser's file-upload tool, several files in one call, in display order; the first becomes "Couverture". Stage photos in a workspace- or upload-readable folder first if the browser tool restricts upload paths.
 3. Category fields, prefilled from the title and photos: check each one. Furniture: "Type", "Produit", "Démontable" toggle, "Pièce", "Poids", "Marque", "Matière", "Couleur", "État" ("État neuf", "Très bon état", "Bon état", "État satisfaisant", "Pour pièces"). Electronics and appliances: "Type", "Produit", "Marque", "Poids", "Couleur", "Année de fabrication", "État". "Poids" drops the decimal point ("2.8" became "8"): type a whole number of kilograms. "Continuer".
 4. "Un dernier aperçu avant de publier votre annonce !": Leboncoin writes its own description ("Rédigé par IA"). Replace it with the approved text.
 5. "Prix de vente souhaité": shows "Prix recommandé entre X € et Y €" and a prefilled guess; set the approved price.
