@@ -14,9 +14,10 @@ zen-skills
 │   └── Writing & docs          present-tense docs, useful comments, lean agent files
 │
 └── plugins/                optional domain add-ons
-    ├── zen-images          make-images   OpenRouter image generation that works
-    └── zen-resale          sell-it       Vinted / Leboncoin listings from photos
-                            print-labels  shipping labels on Avery L7169 sheets
+    ├── zen-colab           run-colab-ollama  Ollama on Colab GPUs, exposed locally over SSH
+    ├── zen-images          make-images       OpenRouter image generation that works
+    └── zen-resale          sell-it           Vinted / Leboncoin listings from photos
+                            print-labels      shipping labels on Avery L7169 sheets
 ```
 
 ## Quick start
@@ -76,6 +77,7 @@ Install only the add-ons you need:
 
 | Plugin | Skill | Loads when | What changes |
 | --- | --- | --- | --- |
+| zen-colab | [run-colab-ollama](plugins/zen-colab/skills/run-colab-ollama/SKILL.md) | Ollama on Google Colab | Checks/bootstraps `google-colab-cli` and SSH `ProxyCommand`, sizes GPU (`T4`/`L4`/`A100`) to model VRAM to save compute units, runs Ollama with `q8_0` KV cache over SSH, exposes a local OpenAI-compatible port, and guards against idle VM billing. |
 | zen-images | [make-images](plugins/zen-images/skills/make-images/SKILL.md) | OpenRouter image work | Endpoint per model family, HTTP 400 pitfalls, observed costs, recipes for realistic portraits, faithful product cleanup, cartoons, sticker packs, and SVG output. |
 | zen-resale | [sell-it](plugins/zen-resale/skills/sell-it/SKILL.md) | Second-hand listings | Listing fields, no invented condition or ISBN, faithful AI-cleaned photos, Leboncoin pickup for bulky items, stable references, one tracker, nothing published without approval. |
 | zen-resale | [print-labels](plugins/zen-resale/skills/print-labels/SKILL.md) | Shipping labels to print | Crops the carrier label out of the PDF or image and places it on a blank A4 landscape page at the chosen Avery L7169 position, barcodes kept vector. |

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zen-colab",
+  "description": "Run Ollama on Google Colab GPUs and expose a local OpenAI-compatible API over SSH.",
+  "author": {
+    "name": "Pierre Paci",
+    "url": "https://github.com/PPACI"
+  },
+  "homepage": "https://github.com/PPACI/zen-skills",
+  "repository": "https://github.com/PPACI/zen-skills",
+  "keywords": [
+    "colab",
+    "ollama",
+    "llm",
+    "gpu",
+    "ssh"
+  ]
+}

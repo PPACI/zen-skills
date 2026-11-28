@@ -14,6 +14,11 @@
       "name": "zen-resale",
       "source": "./plugins/zen-resale",
       "description": "Second-hand listings on Vinted or Leboncoin, from photos to shipping."
+    },
+    {
+      "name": "zen-colab",
+      "source": "./plugins/zen-colab",
+      "description": "Run Ollama on Google Colab GPUs and expose a local OpenAI-compatible API over SSH."
     }
   ]
 }
